@@ -1,0 +1,77 @@
+rules_version = '2';
+service cloud.firestore {
+		function isAuthenticated() {
+    	return request.auth.uid != null;
+    }
+    
+     function isUserRef(field) {
+      return field in resource.data
+        && resource.data[field] == /databases/$(database)/documents/users/$(request.auth.uid)
+    }
+  
+    function isAdmin() {
+    	return true;
+    	// return request.auth.token['admin'] == true;      
+    }
+      
+    function isVerifiedUser() {
+    	return request.auth.token.email_verified == true && request.auth.token.phone_number != null;
+    }
+
+  match /databases/{database}/documents {
+     
+    match /{document=**} {
+      allow read, write: if isAuthenticated();      
+    }
+        
+    match /devices/{deviceId} {
+    	allow write: if isAdmin();   
+      allow list: if false;
+      allow get: if isStaff();    			
+    }
+    
+    function isReservationOwner() {
+    	return isUserRef("user");
+    }
+    
+    match /venues/{venueId} {
+    	allow read, write;      
+      
+      function isVenueAdmin() {
+      	return true;        
+      }
+      
+      function isVenueStaff() {
+      	return true;        
+      }
+      
+      match /reservations/{reservationId} {
+      	allow create: if isVerifiedUser();
+        allow delete: if false;
+        allow update, get: if isReservationOwner() || isVenueStaff();
+        allow list: if isVerifiedUser || isVenueStaff();
+      }
+       
+      match /wardrobes/{wardrobes=**} {
+      	allow read, write: if isVenueAdmin();
+      }      
+    }
+  
+
+    match /users/{userId} {
+
+      function isSelf() {
+        return request.auth.uid == userId
+      }
+      
+      function isStaff() {
+      	return true;
+      }
+      
+      
+      allow get: if isSelf() || isStaff();
+      allow list: if false;
+      allow update, delete: if isSelf();    
+    }
+  }
+}
