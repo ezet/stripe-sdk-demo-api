@@ -1,17 +1,17 @@
 import * as functions from 'firebase-functions';
-
 // import { requestCheckInHandler } from "./handlers/requestCheckInHandler";
-import { onCall } from "./utils";
-import { getEphemeralKeyHandler } from "./handlers/getEphemeralKeyHandler";
-import { setupUserHandler } from "./handlers/setupUserHandler";
-import { cleanupUserHandler } from "./handlers/cleanupUserHandler";
+import {onCall} from "./utils";
+import {getEphemeralKeyHandler} from "./handlers/getEphemeralKeyHandler";
+import {setupUserHandler} from "./handlers/setupUserHandler";
+import {cleanupUserHandler} from "./handlers/cleanupUserHandler";
 // import { confirmPaymentHandler } from "./handlers/confirmPaymentHandler";
 // import { confirmCheckInHandler } from "./handlers/confirmCheckInHandler";
 // import { requestCheckOutHandler } from "./handlers/requestCheckOutHandler";
 // import { confirmCheckOutHandler } from "./handlers/confirmCheckOutHandler";
 // import { cancelCheckInHandler } from "./handlers/cancelCheckInhandler";
 // import { timeoutIntervalMinutes, timeoutReservationsHandler } from "./handlers/timeoutReservationHandler";
-import { createSetupIntentHandler } from './handlers/createSetupIntentHandler';
+import {createSetupIntentHandler} from './handlers/createSetupIntentHandler';
+import {performChargeHandler} from "./handlers/performChargeHandler";
 
 
 const region = "europe-west2";
@@ -39,7 +39,7 @@ export const setupUser = functions.runWith({ memory: memory }).region(region).au
 export const cleanupUser = functions.runWith({ memory: memory }).region(region).auth.user().onDelete(cleanupUserHandler);
 
 
-// export const requestCheckIn = onCall(requestCheckInHandler);
+export const performCharge = onCall(performChargeHandler);
 
 // noinspection JSUnusedGlobalSymbols
 /**

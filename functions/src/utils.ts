@@ -1,8 +1,8 @@
-import { UserRecord } from "firebase-functions/lib/providers/auth";
-import { CallableContext } from "firebase-functions/lib/providers/https";
+import {UserRecord} from "firebase-functions/lib/providers/auth";
+import {CallableContext} from "firebase-functions/lib/providers/https";
 import * as functions from "firebase-functions";
 import * as logging from "@google-cloud/logging";
-import { ApiResponse } from "@google-cloud/logging/build/src/log";
+import {ApiResponse} from "@google-cloud/logging/build/src/log";
 import * as firebase_admin from "firebase-admin";
 // @ts-ignore
 import Stripe = require("stripe");
@@ -62,7 +62,7 @@ export function getRequestingUserId(context: CallableContext) {
 }
 
 // noinspection JSUnusedGlobalSymbols
-export async function getStripeCustomerId(userId: string): Promise<string | null> {
+export async function getStripeCustomerId(userId: string): Promise<string> {
     return Promise.resolve("cus_H4r1TrKqsPpZpS");
     // const user = await admin.auth().getUser(userId);
     // return getStripeCustomerIdForUser(user);
