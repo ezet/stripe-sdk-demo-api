@@ -34,7 +34,17 @@ export const createSetupIntent = onCall(createSetupIntentHandler);
 export const getEphemeralKey = onCall(getEphemeralKeyHandler);
 
 
+/**
+ * Create a Payment Intent with automatic confirmation.
+ * This supports the *standard flow* as described by Stripe.
+ * https://stripe.com/docs/payments/accept-a-payment#android-create-payment-intent
+ */
 export const createAutomaticPaymentIntent = onCall(createAutomaticPaymentIntentHandler);
 
+/**
+ * Create a Payment Intent with manual confirmation.
+ * This supports the synchronous flow as described by stripe.
+ * https://stripe.com/docs/payments/accept-a-payment-synchronously#android-create-payment-intent
+ */
 export const createManualPaymentIntent = onCall(createManualPaymentIntentHandler);
 
