@@ -1,6 +1,6 @@
 import * as functions from "firebase-functions";
-import { admin, adminVisibilityForState, clientVisibilityForState, intentToStatus, stripe } from "../utils";
-import { paymentIntents } from "stripe";
+import {admin, adminVisibilityForState, clientVisibilityForState, intentToStatus, stripe} from "../utils";
+import {paymentIntents} from "stripe";
 
 export async function confirmPaymentHandler(data: any, context: functions.https.CallableContext) {
     console.log(data);
@@ -19,5 +19,5 @@ export async function confirmPaymentHandler(data: any, context: functions.https.
         visibleInApp: clientVisibilityForState(status),
         visibleInAdmin: adminVisibilityForState(status)
     });
-    return { status: intent.status, next_action: intent.next_action, client_secret: intent.client_secret }
+    return {status: intent.status, clientSecret: intent.client_secret}
 }

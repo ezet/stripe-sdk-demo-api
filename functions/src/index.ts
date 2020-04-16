@@ -5,7 +5,8 @@ import {setupUserHandler} from "./handlers/setupUserHandler";
 import {cleanupUserHandler} from "./handlers/cleanupUserHandler";
 
 import {createSetupIntentHandler} from './handlers/createSetupIntentHandler';
-import {performChargeHandler} from "./handlers/performChargeHandler";
+import {createAutomaticPaymentIntentHandler} from "./handlers/createAutomaticPaymentIntentHandler";
+import {createManualPaymentIntentHandler} from "./handlers/createManualPaymentIntentHandler";
 
 
 const region = "europe-west2";
@@ -33,5 +34,7 @@ export const createSetupIntent = onCall(createSetupIntentHandler);
 export const getEphemeralKey = onCall(getEphemeralKeyHandler);
 
 
-export const performCharge = onCall(performChargeHandler);
+export const createAutomaticPaymentIntent = onCall(createAutomaticPaymentIntentHandler);
+
+export const createManualPaymentIntent = onCall(createManualPaymentIntentHandler);
 
