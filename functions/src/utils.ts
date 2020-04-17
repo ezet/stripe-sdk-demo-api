@@ -13,7 +13,7 @@ const memory = "128MB";
 
 export const admin = firebase_admin.initializeApp();
 export const db = admin.firestore();
-export const stripe = new Stripe(functions.config().stripe.test.secret_key);
+export const stripe = new Stripe(functions.config().stripe.secret_key);
 
 export function adminVisibilityForState(state: ReservationState | null) {
     return state === ReservationState.PAYMENT_RESERVED || state === ReservationState.CHECKING_OUT
