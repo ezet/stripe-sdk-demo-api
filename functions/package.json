@@ -14,20 +14,20 @@
   },
   "main": "lib/index.js",
   "dependencies": {
-    "@google-cloud/logging": "^5.2.1",
-    "@google-cloud/firestore": "^2.2.8",
-    "firebase-admin": "^8.3.0",
+    "@google-cloud/firestore": "^2.6.1",
+    "@google-cloud/logging": "^5.5.5",
+    "firebase-admin": "^8.10.0",
     "firebase-app": "^0.0.1",
-    "firebase-functions": "^3.2.0",
-    "stripe": "^7.8.0"
+    "firebase-functions": "^3.6.0",
+    "stripe": "^7.15.0"
   },
   "devDependencies": {
-    "@firebase/app-types": "^0.4.3",
-    "@types/node": "^12.7.2",
-    "@types/stripe": "^6.31.17",
-    "firebase-functions-test": "^0.1.6",
-    "tslint": "^5.12.0",
-    "typescript": "^3.2.2"
+    "@firebase/app-types": "^0.4.9",
+    "@types/node": "^12.12.35",
+    "@types/stripe": "^6.32.13",
+    "firebase-functions-test": "^0.1.7",
+    "tslint": "^5.20.1",
+    "typescript": "^3.8.3"
   },
   "private": true
 }
