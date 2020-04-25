@@ -7,12 +7,12 @@ export async function createSetupIntentHandler(data: any, context: functions.htt
         throw new functions.https.HttpsError('failed-precondition', "User has no Stripe ID");
     }
     const setupIntent = await stripe.setupIntents.create({
-        confirm: true,
+        // confirm: true,
         customer: customerId,
-        payment_method: data.paymentMethod,
+        // payment_method: data.paymentMethod,
         usage: 'on_session',
-        return_url: data.return_url,
-        payment_method_types: ["card"],
+        // return_url: data.return_url,
+        // payment_method_types: ["card"],
     });
     return {status: setupIntent.status, clientSecret: setupIntent.client_secret};
 }
