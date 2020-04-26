@@ -8,6 +8,7 @@ export async function createAutomaticPaymentIntentHandler(data: any, context: fu
     const amount = data.amount;
 
     const intent = await stripe.paymentIntents.create({
+        customer: customerId,
         amount: amount,
         currency: 'USD',
     });
